@@ -3,8 +3,10 @@ import { connect } from 'react-redux';
 
 import PlayerMatches from '../components/PlayerMatches';
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
     return {
+        matches: ownProps.matches,
+        wordcloud: ownProps.wordcloud
     };
 };
 

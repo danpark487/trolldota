@@ -5,8 +5,12 @@
    flex-direction: column;
 }
 
+body {
+    background-color: #1f202e;
+}
+
 .flex-item {
-  background-color: darkslategrey;
+  background-color: #1f202e;
   padding: 0px;
   width: 100%;
   height: 30px;
@@ -37,20 +41,19 @@ ul {
 /* Navbar */
 #navbar {
     margin-bottom: 0;
-    background-color: #040916;
-    border-bottom: 1px solid white;
+    background-color: #1f202e;
+    border-bottom: 1px solid rgba(255,255,255,.5);
 }
 
 /* Player Info */
 .player-info {
-    padding: 6em 0 1em 0;
-    background-image: url(../backgrounds/player-info-background.jpg);
+    padding: 3em 0 1em 0;
+    background-image: url(../assets/backgrounds/player-info-background.jpg);
     background-size: cover;
     background-position: top;
     background-attachment: fixed;
     background-repeat: no-repeat;
     text-align: center;
-    border-top: 1px solid black;
 }
 
 #profile-picture {
@@ -90,9 +93,9 @@ ul {
 /* Player Matches */
 
 .player-matches {
-    padding: 1em 1em 6em 1em;
-    background-color: #040916;
-    border-top: 1px solid white;
+    padding: 1em 1em 1em 1em;
+    background-color: #1f202e;
+    border-top: 1px solid rgba(255,255,255,.5);
 }
 
 .recent-match-header {
@@ -102,30 +105,49 @@ ul {
 }
 
 table {
-    background-color: transparent!important;
+    background-color: #1f202e;
     table-layout: auto!important;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
     width: 100%;
+}
+
+table tr td {
+    border-top: 1px solid hsla(0,0%,100%,.06)!important;
 }
 
 thead {
     display: table-header-group;
     vertical-align: middle;
-    border-color: white;
+    border-bottom: 1px solid rgba(255,255,255,.5);
 }
 
 tr {
     display: table-row;
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid rgba(255,255,255,.5);
+}
+
+table tr:nth-child(2n) {
+    background-color: rgba(0,0,0,.019);
 }
 
 th {
     padding: 10px 10px 10px 10px;
-    border-bottom: 1px solid white;
     font-size: 16px;
 }
 
 td {
     padding: 10px 10px 10px 10px;
     font-size: 14px;
+}
+
+.hero-image {
+    margin-right: 7px;
+    position: relative;
+    height: 29px;
+}
+
+/* Footer */
+
+footer {
+    margin-bottom: 2.5em;
 }

@@ -5,7 +5,10 @@ import Player from '../components/Player';
 
 const mapStateToProps = (state) => {
     return {
-        currentPlayer: state.player.currentPlayer
+        playerinfo: state.player.playerinfo,
+        winloss: state.player.winloss,
+        matches: state.player.matches,
+        wordcloud: state.player.wordcloud
     };
 };
 

@@ -1,9 +1,12 @@
 /** Constant */
-import {SET_PLAYER} from '../action-creators/player';
+import { SET_PLAYER, SET_WIN_LOSS, SET_PLAYER_MATCHES, SET_PLAYER_WORDCLOUD } from '../action-creators/player';
 
 /** Initial State */
 const initialPlayerState = {
-    currentPlayer: ''
+    playerinfo: {},
+    winloss: {},
+    matches: {},
+    wordcloud: {}
 };
 
 /** Player reducer */
@@ -13,7 +16,10 @@ export default function (state = initialPlayerState, action) {
     switch (action.type) {
 
         case SET_PLAYER:
-            newState.currentPlayer = action.currentPlayer;
+            newState.playerinfo = action.playerinfo;
+            newState.winloss = action.winloss;
+            newState.matches = action.matches;
+            newState.wordcloud = action.wordcloud;
             break;
 
         default:
@@ -21,4 +27,4 @@ export default function (state = initialPlayerState, action) {
     }
 
     return newState;
-};
+}

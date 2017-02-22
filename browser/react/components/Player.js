@@ -7,10 +7,16 @@ export default function (props) {
     return (
         <div className="flex-container">
             <div className="flex-container">
-                <PlayerInfoContainer />
+                <PlayerInfoContainer
+                    playerinfo={props.playerinfo}
+                    winloss={props.winloss}
+                />
             </div>
             <div className="flex-container">
-                <PlayerMatchesContainer />
+                <PlayerMatchesContainer
+                    matches={props.matches}
+                    wordcloud={props.wordcloud}
+                />
             </div>
         </div>
     );

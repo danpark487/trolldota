@@ -3,8 +3,10 @@ import { connect } from 'react-redux';
 
 import PlayerInfo from '../components/PlayerInfo';
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
     return {
+        playerinfo: ownProps.playerinfo,
+        winloss: ownProps.winloss
     };
 };
 

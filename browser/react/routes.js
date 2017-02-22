@@ -11,7 +11,7 @@ import PlayerContainer from './containers/PlayerContainer';
 
 /** Importing thunk actions */
 import { loadWatchlistPlayers } from './action-creators/watchlist';
-import { loadCurrentPlayer } from './action-creators/player';
+import { loadCurrentPlayer, loadPlayerWinLoss, loadPlayerMatches, loadPlayerWordCloud } from './action-creators/player';
 
 /** onEnter hooks */
 const onWatchlistEnter = function (nextRouterState) {
@@ -20,8 +20,7 @@ const onWatchlistEnter = function (nextRouterState) {
 
 const onPlayerEnter = function (nextRouterState) {
   store.dispatch(loadCurrentPlayer(nextRouterState.params.playerId));
-}
-
+};
 
 /** Routes */
 export default function Root () {
