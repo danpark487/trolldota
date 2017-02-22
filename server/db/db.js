@@ -4,23 +4,9 @@ const Sequelize = require('sequelize');
 
 console.log('Opening connection to PostgreSQL');
 
-let sequelize;
-
-console.log(process.env.DATABASE_URL);
-
-if (process.env.DATABASE_URL) {
-  // the application is executed on Heroku ... use the postgres database
-  sequelize = new Sequelize(process.env.DATABASE_URL, {
-    dialect:  'postgres',
-    protocol: 'postgres',
-    logging:  false
-  });
-} else {
-  // the application is executed on the local machine
-  sequelize = new Sequelize('postgres://localhost:5432/trolldota', {
-    logging: false
-  });
-}
+const databaseURI = process.env.DATABASE_URL || 'postgres://localhost:5432/trolldota';
 
 // create the database instance
-module.exports = sequelize;
+module.exports = new Sequelize(databaseURI, {
+    logging: false
+});
