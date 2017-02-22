@@ -24,13 +24,108 @@ ul {
     list-style-type: none;
 }
 
-.row-container {
-   display: -webkit-flex;
-   display: flex;
-   -webkit-flex-direction: row;
-   flex-direction: row;
+.flex-row-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
 }
 
-.right {
-   margin-left: auto;
+.player-matches {
+    padding: 2em 0;
+}
+
+/* Navbar */
+#navbar {
+    margin-bottom: 0;
+    background-color: #040916;
+    border-bottom: 1px solid white;
+}
+
+/* Player Info */
+.player-info {
+    padding: 6em 0 1em 0;
+    background-image: url(../backgrounds/player-info-background.jpg);
+    background-size: cover;
+    background-position: top;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    text-align: center;
+    border-top: 1px solid black;
+}
+
+#profile-picture {
+    border-radius: 50%;
+    height: 200px;
+    width: 200px;
+}
+
+.player-info-block {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.wrap {
+    width: 33%;
+}
+
+.mmr-block {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.wl-block {
+    display: flex;
+    justify-content: center;
+}
+
+#mmr {
+    padding: 1em;
+}
+
+#win-loss {
+    padding: 1em;
+}
+
+/* Player Matches */
+
+.player-matches {
+    padding: 1em 1em 6em 1em;
+    background-color: #040916;
+    border-top: 1px solid white;
+}
+
+.recent-match-header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+table {
+    background-color: transparent!important;
+    table-layout: auto!important;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+thead {
+    display: table-header-group;
+    vertical-align: middle;
+    border-color: white;
+}
+
+tr {
+    display: table-row;
+    border-bottom: 1px solid white;
+}
+
+th {
+    padding: 10px 10px 10px 10px;
+    border-bottom: 1px solid white;
+    font-size: 16px;
+}
+
+td {
+    padding: 10px 10px 10px 10px;
+    font-size: 14px;
 }

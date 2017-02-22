@@ -1,8 +1,17 @@
 import React from 'react';
 
-export default Player = () => {
+import PlayerInfoContainer from '../containers/PlayerInfoContainer';
+import PlayerMatchesContainer from '../containers/PlayerMatchesContainer';
+
+export default function (props) {
     return (
-        <div>
+        <div className="flex-container">
+            <div className="flex-container">
+                <PlayerInfoContainer />
+            </div>
+            <div className="flex-container">
+                <PlayerMatchesContainer />
+            </div>
         </div>
     );
-};
+}

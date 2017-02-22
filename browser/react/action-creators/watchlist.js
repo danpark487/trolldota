@@ -15,7 +15,7 @@ const gettingWatchlistPlayers = (players) => {
 /** Thunk Actions */
 export const addPlayerToWatchlist = (userId, playerId) => {
     return dispatch => {
-        return axios.post(`/api/watchlist/${userId}/add/${playerId}`, {
+        return axios.put(`/api/watchlist/${userId}/add/`, {
             userId: userId,
             playerId: playerId
         })

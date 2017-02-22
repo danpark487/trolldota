@@ -18,14 +18,14 @@ router.get('/:userId', function(req, res, next) {
 });
 
 /** PUT -- add player to user watchlist */
-router.put('/:userId/add/:playerId', function(req, res, next) {
+router.put('/:userId/add', function(req, res, next) {
     Watchlist.findOrCreate({
         where: {
             UserId: req.params.userId
         }
     })
         .spread((foundWatchlist, created) => {
-            return foundWatchlist.update({addingPlayer: req.params.playerId});
+            return foundWatchlist.update({addingPlayer: req.body.playerId});
         })
         .then((newWatchlist) => {
             res.status(200).json(newWatchlist);
