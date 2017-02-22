@@ -27,8 +27,10 @@ app.use(function (err, req, res, next) {
 });
 
 /** Starting Server */
-app.listen(3154, () => {
-    console.log('Server now listening on port 3154');
+
+const PORT = process.env.PORT || 3154;
+app.listen(PORT, () => {
+    console.log('Server now listening on port', PORT);
     startDb
         .then(() => {
             console.log('Synchronated the database');
