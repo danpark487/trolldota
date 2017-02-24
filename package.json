@@ -4,8 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "webpack -w & nodemon --watch server -e js,html server/app.js",
-    "build": "webpack"
+    "start": "server/node app.js",
+    "build": "webpack -w & nodemon --watch server -e js,html server/app.js",
   },
   "repository": {
     "type": "git",
