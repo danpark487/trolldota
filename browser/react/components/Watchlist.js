@@ -14,5 +14,5 @@ export default function (props) {
             </div>
             <PlayersContainer playerList={props.playerList} />
         </div>
-            );
-};
+    );
+}

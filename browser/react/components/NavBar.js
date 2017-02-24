@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-export default function NavBar (props) {
+export default function NavBar(props) {
     return (
         <nav className="navbar navbar-default" id="navbar">
             <div className="container-fluid">
@@ -19,10 +19,10 @@ export default function NavBar (props) {
                     </ul>
 
                     <ul className="nav navbar-nav navbar-right">
-                        <li><a href="#">LOGIN</a></li>
+                        <li><a onClick={props.showLoginMenu}>LOGIN</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
     );
-};
+}

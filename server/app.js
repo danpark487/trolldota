@@ -6,6 +6,7 @@ const startDb = require('./db');
 const path = require('path');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
+const session = require('express-session');
 
 /** Logging Middleware */
 app.use(morgan('dev'));
@@ -13,6 +14,13 @@ app.use(morgan('dev'));
 /** Body Parsing Middleware for POST/PUT reqeusts */
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+/** Sessions */
+app.use(session({
+    secret: 'quoth the raven',
+    resave: false,
+    saveUninitialized: false
+}));
 
 /** Static File Middleware */
 app.use(express.static(path.join(__dirname, '../public')));
