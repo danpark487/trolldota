@@ -2,20 +2,29 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 /** Modal Components */
-import LoginModal from './LoginModal';
+import LoginModal from './components/LoginModal';
+
+/** Modal Type Constants */
+import { LOGIN_MODAL} from './modaltypes'; 
 
 const MODAL_COMPONENTS = {
-    'Login': LoginModal
+    LOGIN_MODAL: LoginModal
 };
 
-const ModalContainer = ({modalType}) => {
-    if (!modalType) {
+const ModalContainer = (props) => {
+    if (!props.modalType) {
         return null;
     }
 
-    const SpecificModal = MODAL_COMPONENTS[modalType];
+    const SpecificModal = MODAL_COMPONENTS[props.modalType];
 
     return <SpecificModal />;
 };
 
-export default connect(state => state.modal)(ModalContainer);
+const mapStateToProps = state => {
+    return {
+        modalType: state.modal.modalType
+    };
+};
+
+export default connect(mapStateToProps)(ModalContainer);

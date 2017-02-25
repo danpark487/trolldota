@@ -6,6 +6,9 @@ import NavBar from '../components/NavBar';
 /** Thunk actions */
 import { loadModal } from '../action-creators/modal';
 
+/** Modal Type Constant */
+import { LOGIN_MODAL } from '../modals/modaltypes';
+
 export class NavBarContainer extends React.Component {
     constructor(props) {
         super(props);
@@ -13,7 +16,7 @@ export class NavBarContainer extends React.Component {
     }
 
     showLoginMenu () {
-        this.props.loadModal('Login');
+        this.props.loadModal(LOGIN_MODAL);
     }
 
     render () {
