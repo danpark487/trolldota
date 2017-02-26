@@ -22,11 +22,28 @@ app.use(session({
     saveUninitialized: false
 }));
 
-/** Static File Middleware */
-app.use(express.static(path.join(__dirname, '../public')));
+
 
 /** Custom Route Middleware */
 app.use('/', require('./app/routes'));
+
+/** For BrowserHistory */
+const validFrontendRoutes = ['/', '/:userId/watchlist', '/players/:playerId', '/watchlist'];
+const indexPath = path.join(__dirname, '..', 'browser', 'index.html');
+validFrontendRoutes.forEach(function (stateRoute) {
+  app.get(stateRoute, function (req, res) {
+    res.sendFile(indexPath);
+  });
+});
+
+/** Static File Middleware */
+const rootPath = path.join(__dirname, '..');
+const browserPath = path.join(rootPath, 'browser');
+const publicPath = path.join(rootPath, 'public');
+
+app.use(express.static(rootPath));
+app.use(express.static(browserPath));
+app.use(express.static(publicPath));
 
 /** Default Error-handling Middleware */
 app.use(function (err, req, res, next) {

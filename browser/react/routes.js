@@ -1,34 +1,35 @@
 import React from 'react';
-import { Router, Route, hashHistory } from 'react-router';
-import store from './store';
+import { Router, Route, IndexRoute, browserHistory } from 'react-router';
+import { connect } from 'react-redux';
 
 /** Importing components and containers */
 import App from './components/App';
+import LoginModal from './modals/components/LoginModal';
 
 import WatchlistContainer from './containers/WatchlistContainer';
 import PlayerContainer from './containers/PlayerContainer';
 
 /** Importing thunk actions */
-import { loadWatchlistPlayers } from './action-creators/watchlist';
 import { loadCurrentPlayer } from './action-creators/player';
-
-/** onEnter hooks */
-const onWatchlistEnter = function (nextRouterState) {
-  store.dispatch(loadWatchlistPlayers(nextRouterState.params.userId));
-};
-
-const onPlayerEnter = function (nextRouterState) {
-  store.dispatch(loadCurrentPlayer(nextRouterState.params.playerId));
-};
+import { loadLoggedInPlayer } from './action-creators/currentuser';
 
 /** Routes */
-export default function Root () {
+export function Root (props) {
   return (
-      <Router history={hashHistory}>
-        <Route path="/" component={App}>
-          <Route path="/watchlist/:userId" component={WatchlistContainer} onEnter={onWatchlistEnter} />
-          <Route path="/player/:playerId" component={PlayerContainer} onEnter={onPlayerEnter} />
+      <Router history={browserHistory}>
+        <Route path="/" component={App} onEnter={props.onAppEnter}>
+          <Route path="watchlist" component={WatchlistContainer}/>
+          <Route path=":userId/watchlist" component={WatchlistContainer}/>
+          <Route path="players/:playerId" component={PlayerContainer} onEnter={props.onPlayerEnter} />
         </Route>
       </Router>
   );
 }
+
+/** Dispatching onEnter hooks */
+const mapDispatchToProps = { 
+  onPlayerEnter: (nextRouterState) => loadCurrentPlayer(nextRouterState.params.playerId),
+  onAppEnter: () => loadLoggedInPlayer()
+};
+
+export default connect(null, mapDispatchToProps)(Root);

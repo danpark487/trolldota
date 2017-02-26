@@ -12,7 +12,7 @@ export default function (props) {
                     <button type="submit" className="btn btn-default">Add</button>
                 </form>
             </div>
-            <PlayersContainer playerList={props.playerList} />
+            <PlayersContainer playerList={props.currentUser.watchlist} />
         </div>
     );
 }

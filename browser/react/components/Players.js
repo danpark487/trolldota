@@ -7,7 +7,7 @@ export default function (props) {
             {props.playerList && props.playerList.map((player, i) => {
                 return (
                     <div key={i} className="flex-item">
-                        <Link to={`/player/${player}`}>{player}</Link>
+                        <Link to={`/players/${player}`}>{player}</Link>
                     </div>
                 );
             })}

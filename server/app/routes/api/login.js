@@ -2,12 +2,20 @@
 
 const router = require('express').Router();
 const User = require('../../../db/models').User;
+const Watchlist = require('../../../db/models').Watchlist;
+
+// check currently-authenticated user, i.e. "who am I?"
+router.get('/', function (req, res, next) {
+    User.findById(req.session.userId)
+        .then(user => res.json(user))
+        .catch(next);
+});
 
 // login
 router.put('/', function(req, res, next) {
-    const { email, password } = req.body;
+    const { username, password } = req.body;
     User.findOne({
-        where: { email, password }
+        where: { username, password }
     })
         .then(user => {
             if (!user) {
@@ -22,26 +30,24 @@ router.put('/', function(req, res, next) {
 
 // signup
 router.post('/', function (req, res, next) {
-  const { email, password } = req.body;
+  const { username, email, password, steamID } = req.body;
   User.findOrCreate({
-    where: { email },
+    where: { username, email, steamID },
     defaults: { password }
   })
   .spread((user, created) => {
     if (created) {
-      req.logIn(user, (err) => {
-        if (err) return next(err);
-        res.json(user);
-      });
+      req.session.userId = user.id;
+      res.json(user);
     } else {
-      throw new HttpError(401);
+      res.sendStatus(401); // user already exists, cannot sign up!
     }
   });
 });
 
 // logout
 router.delete('/', function (req, res) {
-  req.logOut();
+  req.session.destroy();
   res.sendStatus(204);
 });
 

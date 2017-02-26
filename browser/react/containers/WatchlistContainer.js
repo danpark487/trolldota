@@ -3,36 +3,44 @@ import {connect} from 'react-redux';
 
 import Watchlist from '../components/Watchlist';
 
-import { addPlayerToWatchlist } from '../action-creators/watchlist';
+import { addPlayerToWatchlist, loadLoggedInPlayer } from '../action-creators/currentuser';
+import { LOGIN_MODAL } from '../modals/modaltypes';
+import { loadModal } from '../action-creators/modal';
 
 export class WatchlistContainer extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            playerId: '',
-            currentUser: '1'
-        };
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.renderWatchlist = this.renderWatchlist.bind(this);
     }
 
     handleSubmit (evt) {
         evt.preventDefault();
-        this.props.addPlayerToWatchlist(this.state.currentUser, evt.target.player.value);
+        this.props.addPlayerToWatchlist(this.props.currentUser.id, evt.target.player.value);
     }
 
+    componentDidMount () {
+        if (!this.props.currentUser) this.props.loadModal(LOGIN_MODAL);
+    }
+    
     render () {
+        return this.props.currentUser ? this.renderWatchlist() : null;
+    }
+
+    renderWatchlist () {
         return (
             <Watchlist
-                handleSubmit={this.handleSubmit} 
-                playerList={this.props.playerList}
+                handleSubmit={this.handleSubmit}
+                currentUser={this.props.currentUser}
             />
         );
     }
+
 }
 
 const mapStateToProps = (state) => {
     return {
-        playerList: state.watchlist.players
+        currentUser: state.currentUser.currentUser
     };
 };
 
@@ -40,6 +48,9 @@ const mapDispatchToProps = (dispatch) => {
     return {
         addPlayerToWatchlist: function(userId, playerId) {
             dispatch(addPlayerToWatchlist(userId, playerId));
+        },
+        loadModal: function(modalType) {
+            dispatch(loadModal(modalType));
         }
     };
 };

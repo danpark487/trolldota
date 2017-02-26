@@ -1,9 +1,9 @@
 /** Constants. */
-import { SET_CURRENT_USER } from '../action-creators/currentuser';
+import { SET_CURRENT_USER, REMOVE_CURRENT_USER } from '../action-creators/currentuser';
 
 /** Initial State */
 const initialUserState = {
-    currentUser: {}
+    currentUser: null
 };
 
 /** Match reducer */
@@ -16,9 +16,13 @@ export default function (state = initialUserState, action) {
             newState.currentUser = action.currentUser;
             break;
 
+        case REMOVE_CURRENT_USER:
+            return initialUserState;
+            break;
+
         default:
             return state;
     }
-
+    
     return newState;
 }

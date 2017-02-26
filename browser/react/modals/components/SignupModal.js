@@ -2,27 +2,29 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { hideModal } from '../../action-creators/modal';
-import { login } from '../../action-creators/currentuser';
+import { signup } from '../../action-creators/currentuser';
 import Modal from '../Modal';
 
-class LoginModal extends React.Component {
+class SignupModal extends React.Component {
     constructor(props) {
         super(props);
         this.onClose = this.onClose.bind(this);
-        this.loginSubmit = this.loginSubmit.bind(this);
+        this.signupSubmit = this.signupSubmit.bind(this);
     }
 
     onClose() {
         this.props.hideModal();
     }
 
-    loginSubmit(evt) {
+    signupSubmit(evt) {
         evt.preventDefault();
         const credentials = {
             username: evt.target.username.value,
-            password: evt.target.password.value
+            email: evt.target.email.value,
+            password: evt.target.password.value,
+            steamID: evt.target.steamID.value
         };
-        this.props.login(credentials);
+        this.props.signup(credentials);
         this.props.hideModal();
     }
 
@@ -30,11 +32,13 @@ class LoginModal extends React.Component {
         return (
             <Modal onClose={this.onClose}>
                 <div className="login">
-                    <h1>Login</h1>
-                    <form method="post" onSubmit={this.loginSubmit}>
+                    <h1>Sign In</h1>
+                    <form method="post" onSubmit={this.signupSubmit}>
                         <input type="text" name="username" placeholder="Username" required="required" />
+                        <input type="text" name="email" placeholder="Email" required="required" />
                         <input type="password" name="password" placeholder="Password" required="required" />
-                        <button type="submit" className="bktn btn-primary btn-block btn-large">Let me in.</button>
+                        <input type="text" name="steamID" placeholder="Steam ID" required="required" />
+                        <button type="submit" className="bktn btn-primary btn-block btn-large">Sign Up.</button>
                     </form>
                     <br />
                 </div>
@@ -45,7 +49,7 @@ class LoginModal extends React.Component {
 
 const mapDispatchToProps = {
     hideModal: () => hideModal(),
-    login: (credentials) => login(credentials)
+    signup: (credentials) => signup(credentials)
 };
 
-export default connect(null, mapDispatchToProps)(LoginModal);
+export default connect(null, mapDispatchToProps)(SignupModal);
